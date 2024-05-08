@@ -3,7 +3,8 @@ NAME	= fractol
 SRCDIR	= src
 INCDIR	= include
 
-SRC		= main.c
+SRC		= 	main.c color.c event_handler.c mandelbrot.c render.c julia.c \
+			utils.c error.c
 SRCS	= $(addprefix $(SRCDIR)/, $(SRC))
 OBJS	= $(SRCS:.c=.o)
 
@@ -13,7 +14,7 @@ LIBFT_INCLUDE = libft/include
 
 MINILIBX = minilibx-linux/libmlx.a
 MINILIBX_PATH = minilibx-linux/
-MINILIBX_INCLUDE = minilibx/
+MINILIBX_INCLUDE = minilibx-linux/
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
@@ -24,13 +25,20 @@ all: $(LIBFT) $(MINILIBX) $(NAME)
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -L$(MINILIBX_PATH) -lmlx -lXext -lX11 -lm -o $(NAME)
 
+# COLORS
+GREEN = \033[1;38;5;76m
+ROSEBUD = \033[1;38;5;199m
+RESET = \033[0m
+
 $(LIBFT):
-	@echo "Making libft..."
+	@echo "$(GREEN)Compiling libft..."
 	@make -sC $(LIBFT_PATH)
+	@echo "Libft compiled!$(RESET)"
 
 $(MINILIBX):
-	@echo "Making MiniLibX..."
+	@echo "$(ROSEBUD)Сompiling MiniLibX...$(RESET)"
 	@make -sC $(MINILIBX_PATH)
+	@echo "$(ROSEBUD)MiniLibX compiled!$(RESET)"
 
 src/%.o: src/%.c
 	$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBFT_INCLUDE) -I$(MINILIBX_INCLUDE) -c $< -o $@
