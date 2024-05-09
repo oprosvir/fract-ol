@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   event_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 23:49:52 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/09 23:27:44 by oprosvir         ###   ########.fr       */
+/*   Created: 2024/05/07 18:58:10 by oprosvir          #+#    #+#             */
+/*   Updated: 2024/05/09 23:28:03 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "fractol.h"
 
-# include "defines.h"
-# include "libft.h"
-# include "mlx.h"
-# include <math.h>
-# include <stdio.h>
+void app_exit(t_fractol *app)
+{
+    if (app->win_ptr)
+        mlx_destroy_window(app->mlx_ptr, app->win_ptr);
+    if (app->mlx_ptr)
+    {
+        mlx_destroy_display(app->mlx_ptr);
+        free(app->mlx_ptr);
+        exit(0);
+    }
+}
 
-void	wrong_arg_num(void);
-void	invalid_arg(void);
-void	allocation_error(void);
-double	ft_atof(const char *str);
-int		handle_keypress(int key, t_fractol *app);
-
-#endif
+int handle_keypress(int key, t_fractol *app)
+{
+    if (key == 65307)
+        app_exit(app);
+    return (0);
+}

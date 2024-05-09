@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 00:07:14 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/08 23:38:14 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/09 23:28:30 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ int	main(int argc, char *argv[])
 
 	init_arg(&app, argc, argv);
 	init_window(&app, argv[0]);
+    mlx_key_hook(app.win_ptr, handle_keypress, &app);
+	mlx_loop(app.mlx_ptr);
 	return (EXIT_SUCCESS);
 }
