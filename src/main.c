@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 00:07:14 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/11 01:55:55 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/12 01:27:12 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void	fractal_init(t_fractol *app, t_fractal_type type)
 {
 	app->fractal_type = type;
 	app->zoom = 1.0;
-	app->offset_x = 0.0;
+	app->offset_x = -0.5;
 	app->offset_y = 0.0;
-	app->julia_cx = -0.7; // 0.25 -0.55
-	app->julia_cy = 0.27015;
+	app->julia_cx = -0.718;
+	app->julia_cy = -0.231;
+	app->max_iterations = 100;
 }
 
 static void	init_arg(t_fractol *app, int argc, char *argv[])
@@ -51,8 +52,6 @@ static void	init_arg(t_fractol *app, int argc, char *argv[])
 
 static void	init_window(t_fractol *app, char *title)
 {
-	int	pixel;
-
 	app->mlx_ptr = mlx_init();
 	if (!app->mlx_ptr)
 		allocation_error();
@@ -73,19 +72,6 @@ static void	init_window(t_fractol *app, char *title)
 	}
 	app->img_data = mlx_get_data_addr(app->img_ptr, &app->bits_per_pixel,
 			&app->line_size, &app->endian);
-	// draw a chess board for debugging
-	for (int y = 0; y < WIN_WIDTH; y++)
-	{
-		for (int x = 0; x < WIN_HEIGHT; x++)
-		{
-			pixel = x * (app->bits_per_pixel / 8) + y * app->line_size;
-			if (x % 50 == 0 || y % 50 == 0)
-				*(unsigned int *)(app->img_data + pixel) = 0xFFFFFF; //white
-			else
-				*(unsigned int *)(app->img_data + pixel) = 0x000000; //black
-		}
-	}
-	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, app->img_ptr, 0, 0);
 }
 
 int	main(int argc, char *argv[])
@@ -94,9 +80,8 @@ int	main(int argc, char *argv[])
 
 	init_arg(&app, argc, argv);
 	init_window(&app, WIN_TITLE);
-	// TODO:
-	// fractal_render(&app);
-	// mlx_mouse_hook(app.win_ptr, handle_mouse_events, &app);
+	fractal_render(&app);
+	mlx_mouse_hook(app.win_ptr, handle_mouse_events, &app);
 	mlx_key_hook(app.win_ptr, handle_keypress, &app);
 	mlx_hook(app.win_ptr, 17, 0, app_exit, &app);
 	mlx_loop(app.mlx_ptr);

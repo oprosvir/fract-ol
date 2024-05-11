@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:54:00 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/11 01:55:19 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:53:21 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_fractol
 	int				bits_per_pixel;
 	int				line_size;
 	int				endian;
+	int				max_iterations;
 	t_fractal_type	fractal_type;
 	double			zoom;
 	double			offset_x;
