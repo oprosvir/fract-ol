@@ -6,13 +6,13 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:09:14 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/19 20:44:39 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/19 21:38:09 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	app_exit_code(t_fractol *app, int exit_code)
+void	app_exit_code(t_fractol *app, int exit_code)
 {
 	if (app->img_ptr)
 		mlx_destroy_image(app->mlx_ptr, app->img_ptr);
@@ -47,6 +47,11 @@ static const char	*skip_space_sign(const char *str, t_atof *atof_data)
 	return (str);
 }
 
+/* parse_parts:
+ *  Parses the integer and fractional parts of the number.
+ *  Sets flags indicating the presence of digits before and after the decimal point.
+ *  Updates the result and fraction fields of the atof_data structure.
+ */
 static const char	*parse_parts(const char *str, t_atof *atof_data)
 {
 	while (ft_isdigit((unsigned char)*str))
@@ -70,6 +75,11 @@ static const char	*parse_parts(const char *str, t_atof *atof_data)
 	return (str);
 }
 
+/* ft_atof:
+ *  Converts a string representing a floating point number to a double.
+ *  Uses the t_atof structure to keep track of the conversion state.
+ *  Returns the converted double value, or -42.0 if the format is invalid.
+ */
 double	ft_atof(const char *str)
 {
 	t_atof	atof_data;
