@@ -6,13 +6,13 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:36:29 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/08 23:16:55 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:15:38 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// Printing the help message with ANSI escape codes for colors and styles
+// Printing the help message with ANSI escape codes
 void display_help() 
 {
     ft_printf("************************************************************\n");
@@ -31,8 +31,6 @@ void display_help()
     ft_printf("* \033[1;38;5;142mControls:\033[0m                                                *\n");
     ft_printf("*   - \033[38;5;43mMovement:\033[0m Arrow keys (left, right, up, down)         *\n");
     ft_printf("*   - \033[38;5;43mZoom:\033[0m Mouse wheel up / down                          *\n");
-    ft_printf("*   - \033[38;5;43mSwitch fractal:\033[0m 'M' for Mandelbrot, 'J' for Julia    *\n");
-    ft_printf("*   - \033[38;5;43mAdjust Julia parameters:\033[0m Click and drag with mouse   *\n");
     ft_printf("*   - \033[38;5;43mExit:\033[0m ESC                                            *\n");
     ft_printf("************************************************************\033[0m\n");
 }
@@ -51,8 +49,8 @@ void invalid_arg()
     exit(EXIT_FAILURE);
 }
 
-void allocation_error()
+void allocation_error(t_fractol *app, const char *message)
 {
-    perror("Error: Unable to allocate resources");
-    exit(EXIT_FAILURE);
+    perror(message);
+    app_exit_code(app, EXIT_FAILURE);
 }

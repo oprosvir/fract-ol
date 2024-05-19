@@ -6,26 +6,11 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:58:10 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/12 01:34:07 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:14:26 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	app_exit(t_fractol *app)
-{
-	if (app->img_ptr)
-		mlx_destroy_image(app->mlx_ptr, app->img_ptr);
-	if (app->win_ptr)
-		mlx_destroy_window(app->mlx_ptr, app->win_ptr);
-	if (app->mlx_ptr)
-	{
-		mlx_destroy_display(app->mlx_ptr);
-		free(app->mlx_ptr);
-		app->mlx_ptr = NULL;
-	}
-	exit(EXIT_SUCCESS);
-}
 
 void	handle_zoom(t_fractol *app, double zoom_factor, int x, int y)
 {
@@ -53,7 +38,7 @@ int	handle_mouse_events(int scroll_event, int x, int y, t_fractol *app)
 int	handle_keypress(int keysym, t_fractol *app)
 {
 	if (keysym == XK_Escape)
-		app_exit(app);
+		app_exit_success(app);
 	if (keysym == XK_Left)
 	{ /* смещение влево */
 	}

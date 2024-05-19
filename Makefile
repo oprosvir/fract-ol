@@ -40,7 +40,7 @@ $(MINILIBX):
 	@make -sC $(MINILIBX_PATH)
 	@echo "$(ROSEBUD)MiniLibX compiled!$(RESET)"
 
-src/%.o: src/%.c
+src/%.o: src/%.c $(INCDIR)/fractol.h $(INCDIR)/defines.h
 	$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBFT_INCLUDE) -I$(MINILIBX_INCLUDE) -c $< -o $@
 
 clean:
