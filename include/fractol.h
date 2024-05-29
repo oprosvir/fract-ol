@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 23:49:52 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/19 21:38:05 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:28:48 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 void	wrong_arg_num(void);
 void	invalid_arg(void);

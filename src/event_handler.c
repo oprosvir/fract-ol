@@ -6,12 +6,13 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:58:10 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/19 19:14:26 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:42:02 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+// TODO: zoom not working properly
 void	handle_zoom(t_fractol *app, double zoom_factor, int x, int y)
 {
 	double	mouse_x;
@@ -40,16 +41,16 @@ int	handle_keypress(int keysym, t_fractol *app)
 	if (keysym == XK_Escape)
 		app_exit_success(app);
 	if (keysym == XK_Left)
-	{ /* смещение влево */
+	{
 	}
 	if (keysym == XK_Right)
-	{ /* вправо */
+	{
 	}
 	if (keysym == XK_Up)
-	{ /* вверх */
+	{
 	}
 	if (keysym == XK_Down)
-	{ /* вниз */
+	{
 	}
 	return (0);
 }
