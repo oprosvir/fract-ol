@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 00:07:14 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/29 15:34:24 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:57:10 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	init_arg(t_fractol *app, int argc, char *argv[])
 	else if (argc == 4 && !ft_strcmp(argv[1], "J"))
 	{
 		if (!ft_isdouble(argv[2]) || !ft_isdouble(argv[3]))
-            invalid_arg();
+			invalid_arg();
 		fractal_init(app, JULIA);
 		check_julia_params(app, argv[2], true);
 		check_julia_params(app, argv[3], false);

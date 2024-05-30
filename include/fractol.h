@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 23:49:52 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/29 15:28:48 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:50:30 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	mandelbrot(t_fractol *app);
 void	julia(t_fractol *app);
 void	fractal_render(t_fractol *app);
 void	app_exit_code(t_fractol *app, int exit_code);
+bool	ft_isdouble(const char *str);
 double	ft_atof(const char *str);
 int		app_exit_success(t_fractol *app);
 int		handle_keypress(int keysym, t_fractol *app);

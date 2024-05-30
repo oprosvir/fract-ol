@@ -6,13 +6,12 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:36:29 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/29 13:38:10 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:03:01 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// Printing the help message with ANSI escape codes
 void	display_help(void)
 {
 	ft_printf("************************************************************\n");

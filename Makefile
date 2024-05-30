@@ -4,7 +4,7 @@ SRCDIR	= src
 INCDIR	= include
 
 SRC		= 	main.c color.c event_handler.c mandelbrot.c render.c julia.c \
-			utils.c error.c
+			parse.c error.c exit.c
 SRCS	= $(addprefix $(SRCDIR)/, $(SRC))
 OBJS	= $(SRCS:.c=.o)
 
