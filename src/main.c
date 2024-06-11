@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 00:07:14 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/30 13:57:10 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/06/12 00:46:41 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ void	fractal_init(t_fractol *app, t_fractal_type type)
 {
 	app->fractal_type = type;
 	app->zoom = 1.0;
-	app->offset_x = -0.5;
-	app->offset_y = 0.0;
+	app->min_r = -2.0;
+    app->min_i = -2.0;
+    app->max_r = app->min_r * -1 * WIN_WIDTH / WIN_HEIGHT;
+    app->max_i = app->min_i * -1 * WIN_HEIGHT / WIN_WIDTH;
 	app->julia_cx = -0.718;
 	app->julia_cy = -0.231;
-	app->max_iterations = MAX_ITERATIONS;
 }
 
 static void	check_julia_params(t_fractol *app, const char *arg, bool is_x)

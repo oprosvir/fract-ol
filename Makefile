@@ -3,7 +3,7 @@ NAME	= fractol
 SRCDIR	= src
 INCDIR	= include
 
-SRC		= 	main.c color.c event_handler.c mandelbrot.c render.c julia.c \
+SRC		= 	main.c color.c event_handler.c render.c \
 			parse.c error.c exit.c
 SRCS	= $(addprefix $(SRCDIR)/, $(SRC))
 OBJS	= $(SRCS:.c=.o)

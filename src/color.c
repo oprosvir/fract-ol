@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:59:09 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/05/12 01:26:37 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/06/12 01:02:21 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,3 @@ int get_color(int iteration, int max_iterations) {
 
     return (r << 16) | (g << 8) | b;
 }
-
-
-
-
-
-
-
-
-
