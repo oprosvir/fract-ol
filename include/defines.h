@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:54:00 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/12 01:01:23 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:16:04 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_complex
     double imag;
 }               t_complex;
 
-
 typedef enum e_fractal_type
 {
 	MANDELBROT,
@@ -40,7 +39,6 @@ typedef struct s_fractol
 	int				bits_per_pixel;
 	int				line_size;
 	int				endian;
-	int				max_iterations;
 	t_fractal_type	fractal_type;
 	double			zoom;
     double          min_r;

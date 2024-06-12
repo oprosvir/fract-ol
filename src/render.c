@@ -6,34 +6,11 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:59:50 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/12 01:01:50 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:24:01 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	put_pixel(t_fractol *app, int x, int y, int color)
-{
-	int	offset;
-
-	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
-	{
-		offset = (x * app->bits_per_pixel / 8) + (y * app->line_size);
-		*(int *)(app->img_data + offset) = color;
-	}
-}
-
-static void set_complex_values(t_fractol *app, int x, int y, t_complex *complex)
-{
-    double scale_real;
-    double scale_imag;
-
-    scale_real = (app->max_r - app->min_r) / WIN_WIDTH;
-    scale_imag = (app->max_i - app->min_i) / WIN_HEIGHT;
-
-    complex->real = app->min_r + x * scale_real;
-    complex->imag = app->min_i + y * scale_imag;
-}
 
 static int is_mandelbrot(double real, double imag)
 {
@@ -79,7 +56,7 @@ void fractal_render(t_fractol *app)
 {
     int x;
     int y;
-    t_complex complex;
+	t_complex complex;
     int iteration;
 
     y = 0;
@@ -93,7 +70,7 @@ void fractal_render(t_fractol *app)
                 iteration = is_mandelbrot(complex.real, complex.imag);
             else if (app->fractal_type == JULIA)
                 iteration = is_julia(complex.real, complex.imag, app->julia_cx, app->julia_cy);
-            put_pixel(app, x, y, get_color(iteration, app->max_iterations));
+            put_pixel(app, x, y, get_color(iteration));
             x++;
         }
         y++;
