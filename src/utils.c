@@ -6,25 +6,31 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:22:15 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/12 17:27:02 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:04:13 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// TODO: colour shifting
-int get_color(int iteration) {
-    if (iteration == MAX_ITERATIONS) {
-        return 0x000000;  // Black color for points inside the fractal
-    }
+void	fractal_init(t_fractol *app, t_fractal_type type)
+{
+	app->fractal_type = type;
+	app->zoom = 1.0;
+	app->min_r = -2.0;
+	app->min_i = -2.0;
+	app->max_r = app->min_r * -1 * WIN_WIDTH / WIN_HEIGHT;
+	app->max_i = app->min_i * -1 * WIN_HEIGHT / WIN_WIDTH;
+	app->julia_cx = -0.718;
+	app->julia_cy = -0.231;
+	app->color_scheme = ELECTRIC;
+}
 
-    // Generate a gradient color based on iteration count
-    double t = (double)iteration / MAX_ITERATIONS;
-    int r = (int)(9 * (1 - t) * t * t * t * 255);
-    int g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
-    int b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-
-    return (r << 16) | (g << 8) | b;
+void julia_shift(int x, int y, t_fractol *app)
+{
+    app->julia_cx = app->min_r + (double)x * (app->max_r - app->min_r) / WIN_WIDTH;
+    app->julia_cy = app->max_i + (double)y * (app->min_i - app->max_i) / WIN_HEIGHT;
+    printf("New Julia coordinates: cx = %f, cy = %f\n", app->julia_cx, app->julia_cy);
+    fractal_render(app);
 }
 
 void	put_pixel(t_fractol *app, int x, int y, int color)
@@ -38,14 +44,13 @@ void	put_pixel(t_fractol *app, int x, int y, int color)
 	}
 }
 
-void set_complex_values(t_fractol *app, int x, int y, t_complex *complex)
+void	set_complex_values(t_fractol *app, int x, int y, t_complex *complex)
 {
-    double scale_real;
-    double scale_imag;
+	double	scale_real;
+	double	scale_imag;
 
-    scale_real = (app->max_r - app->min_r) / WIN_WIDTH;
-    scale_imag = (app->max_i - app->min_i) / WIN_HEIGHT;
-
-    complex->real = app->min_r + x * scale_real;
-    complex->imag = app->min_i + y * scale_imag;
+	scale_real = (app->max_r - app->min_r) / WIN_WIDTH;
+	scale_imag = (app->max_i - app->min_i) / WIN_HEIGHT;
+	complex->real = app->min_r + x * scale_real;
+	complex->imag = app->max_i - y * scale_imag;
 }

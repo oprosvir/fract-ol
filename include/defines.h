@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:54:00 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/12 17:16:04 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:00:17 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,28 @@
 # define DEFINES_H
 
 # define WIN_TITLE "Fractol"
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 800
-# define MAX_ITERATIONS 100
+# define WIN_WIDTH 900
+# define WIN_HEIGHT 900
+# define MAX_ITERATIONS 200
+
+# define MOUSE_SCROLL_UP 4
+# define MOUSE_SCROLL_DOWN 5
+# define MOUSE_LEFT_BUTTON 1
+
+# define MOVE_DISTANCE 0.1
 
 typedef struct s_complex
 {
-    double real;
-    double imag;
-}               t_complex;
+	double			real;
+	double			imag;
+}					t_complex;
+
+typedef enum e_color_scheme
+{
+	ELECTRIC,
+	NEON,
+	PSYCHEDELIC
+}					t_color_scheme;
 
 typedef enum e_fractal_type
 {
@@ -40,11 +53,12 @@ typedef struct s_fractol
 	int				line_size;
 	int				endian;
 	t_fractal_type	fractal_type;
+	t_color_scheme	color_scheme;
 	double			zoom;
-    double          min_r;
-    double          max_r;
-    double          min_i;
-    double          max_i;
+	double			min_r;
+	double			max_r;
+	double			min_i;
+	double			max_i;
 	double			julia_cx;
 	double			julia_cy;
 }					t_fractol;
