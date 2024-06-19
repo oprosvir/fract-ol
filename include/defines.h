@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:54:00 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/13 00:00:17 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:50:14 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIN_TITLE "Fractol"
 # define WIN_WIDTH 900
 # define WIN_HEIGHT 900
-# define MAX_ITERATIONS 200
+# define MAX_ITERATIONS 500
 
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
