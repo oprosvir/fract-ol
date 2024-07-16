@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:27:09 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/12 23:44:57 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:14:26 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	get_color(t_fractol *app, int iteration)
 {
 	double	t;
 
-	if (iteration == MAX_ITERATIONS)
+	if (iteration == app->iterations)
 		return (0x000000);
-	t = (double)iteration / MAX_ITERATIONS;
+	t = (double)iteration / app->iterations;
 	if (app->color_scheme == ELECTRIC)
 		return (get_color_electric(t));
 	else if (app->color_scheme == NEON)

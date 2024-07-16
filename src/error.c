@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 22:36:29 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/19 11:13:07 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:23:37 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	display_help(void)
 	ft_printf("  \033[1;38;5;142mControls:\033[0m\n");
 	ft_printf("    - \033[38;5;43mMovement:\033[0m Arrow keys\n");
 	ft_printf("    - \033[38;5;43mZoom:\033[0m Mouse wheel up / down\n");
+	ft_printf("    - \033[38;5;43mIncrease iterations:\033[0m +\n");
+	ft_printf("    - \033[38;5;43mDecrease iterations:\033[0m -\n");
 	ft_printf("    - \033[38;5;43mChange color scheme:\033[0m Space\n");
 	ft_printf("    - \033[38;5;43mChange Julia coordinates \
         :\033[0m Mouse left click\n");

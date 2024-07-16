@@ -6,13 +6,13 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:59:50 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/19 11:05:49 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:13:51 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	is_mandelbrot(t_complex complex)
+static int	is_mandelbrot(t_complex complex, t_fractol *app)
 {
 	double	zr;
 	double	zi;
@@ -22,7 +22,7 @@ static int	is_mandelbrot(t_complex complex)
 	zr = 0;
 	zi = 0;
 	i = 0;
-	while (zr * zr + zi * zi < 4 && i < MAX_ITERATIONS)
+	while (zr * zr + zi * zi < 4 && i < app->iterations)
 	{
 		tmp = 2 * zr * zi + complex.imag;
 		zr = zr * zr - zi * zi + complex.real;
@@ -42,7 +42,7 @@ static int	is_julia(t_complex complex, t_fractol *app)
 	zr = complex.real;
 	zi = complex.imag;
 	i = 0;
-	while (zr * zr + zi * zi < 4 && i < MAX_ITERATIONS)
+	while (zr * zr + zi * zi < 4 && i < app->iterations)
 	{
 		tmp = 2 * zr * zi + app->julia_cy;
 		zr = zr * zr - zi * zi + app->julia_cx;
@@ -67,7 +67,7 @@ void	fractal_render(t_fractol *app)
 		{
 			set_complex_values(app, x, y, &complex);
 			if (app->fractal_type == MANDELBROT)
-				iteration = is_mandelbrot(complex);
+				iteration = is_mandelbrot(complex, app);
 			else if (app->fractal_type == JULIA)
 				iteration = is_julia(complex, app);
 			put_pixel(app, x, y, get_color(app, iteration));

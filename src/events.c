@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:58:10 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/19 11:04:45 by oprosvir         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:36:52 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,13 @@ int	handle_keypress(int keysym, t_fractol *app)
 		move(app, 'U');
 	else if (keysym == XK_Down)
 		move(app, 'D');
+	else if (keysym == XK_plus || keysym == XK_KP_Add)
+		app->iterations += 10;
+	else if (keysym == XK_minus || keysym == XK_KP_Subtract)
+	{
+		if (app->iterations > 20)
+			app->iterations -= 10;
+	}	
 	else if (keysym == XK_space)
 		app->color_scheme = (app->color_scheme + 1) % 3;
 	fractal_render(app);
