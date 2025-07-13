@@ -1,6 +1,6 @@
 [submodule "libft"]
 	path = libft
-	url = git@github.com:pickled-git/libft_expanded.git
+	url = https://github.com/pickled-git/libft_expanded.git
 [submodule "minilibx-linux"]
 	path = minilibx-linux
-	url = git@github.com:42Paris/minilibx-linux.git
+	url = https://github.com/42Paris/minilibx-linux.git
