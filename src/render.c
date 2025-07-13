@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:59:50 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/07/16 10:13:51 by oprosvir         ###   ########.fr       */
+/*   Updated: 2025/07/14 01:38:35 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@ static int	is_mandelbrot(t_complex complex, t_fractol *app)
 {
 	double	zr;
 	double	zi;
-	double	tmp;
+	double	zr2;
+	double	zi2;
 	int		i;
 
-	zr = 0;
-	zi = 0;
 	i = 0;
-	while (zr * zr + zi * zi < 4 && i < app->iterations)
+	zr = 0.0;
+	zi = 0.0;
+	zr2 = 0.0;
+	zi2 = 0.0;
+	while ((zr2 + zi2) < 4 && i < app->iterations)
 	{
-		tmp = 2 * zr * zi + complex.imag;
-		zr = zr * zr - zi * zi + complex.real;
-		zi = tmp;
+		zi = 2.0 * zr * zi + complex.imag;
+		zr = zr2 - zi2 + complex.real;
+		zr2 = zr * zr;
+		zi2 = zi * zi;
 		i++;
 	}
 	return (i);
@@ -36,17 +40,21 @@ static int	is_julia(t_complex complex, t_fractol *app)
 {
 	double	zr;
 	double	zi;
-	double	tmp;
+	double	zr2;
+	double	zi2;
 	int		i;
 
 	zr = complex.real;
 	zi = complex.imag;
 	i = 0;
-	while (zr * zr + zi * zi < 4 && i < app->iterations)
+	zr2 = zr * zr;
+	zi2 = zi * zi;
+	while ((zr2 + zi2) < 4 && i < app->iterations)
 	{
-		tmp = 2 * zr * zi + app->julia_cy;
-		zr = zr * zr - zi * zi + app->julia_cx;
-		zi = tmp;
+		zi = 2.0 * zr * zi + app->julia_cy;
+		zr = zr2 - zi2 + app->julia_cx;
+		zr2 = zr * zr;
+		zi2 = zi * zi;
 		i++;
 	}
 	return (i);
