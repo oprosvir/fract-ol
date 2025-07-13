@@ -1,29 +1,40 @@
-NAME	= fractol
+NAME			= fractol
 
-SRCDIR	= src
-INCDIR	= include
+OBJDIR			= obj/
+INCDIR			= include/
+SRCDIR			= src/
 
-SRC		= 	main.c utils.c events.c render.c color.c \
-			parse.c error.c exit.c
-SRCS	= $(addprefix $(SRCDIR)/, $(SRC))
-OBJS	= $(SRCS:.c=.o)
+SRCS			= 	src/main.c \
+					src/parse.c \
+					src/render.c\
+					src/events.c \
+					src/color.c \
+					src/utils.c \
+					src/error.c \
+					src/exit.c
 
-LIBFT = libft/libft.a
-LIBFT_PATH = libft/
-LIBFT_INCLUDE = libft/include
+OBJS			= $(SRCS:src/%.c=$(OBJDIR)%.o)
 
-MINILIBX = minilibx-linux/libmlx.a
-MINILIBX_PATH = minilibx-linux/
-MINILIBX_INCLUDE = minilibx-linux/
+LIBFT_DIR		= libft/
+LIBFT			= libft/libft.a
 
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
-RM		= rm -f
+MINILIBX_DIR	= minilibx-linux/
+MINILIBX		= minilibx-linux/libmlx.a
 
-all: $(LIBFT) $(MINILIBX) $(NAME)
+CC				= cc
+CFLAGS			= -Wall -Wextra -Werror
+LDFLAGS			= -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm
+INCLUDES		= -I$(INCDIR) -I$(LIBFT_DIR)include -I$(MINILIBX_DIR)
+RM				= rm -f
 
-$(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -L$(MINILIBX_PATH) -lmlx -lXext -lX11 -lm -o $(NAME)
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(MINILIBX) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
+
+$(OBJDIR)%.o: $(SRCDIR)%.c $(INCDIR)fractol.h $(INCDIR)defines.h
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # COLORS
 GREEN = \033[1;38;5;76m
@@ -32,26 +43,24 @@ RESET = \033[0m
 
 $(LIBFT):
 	@echo "$(GREEN)Compiling libft..."
-	@make -sC $(LIBFT_PATH)
+	@$(MAKE) -sC $(LIBFT_DIR)
 	@echo "Libft compiled!$(RESET)"
 
 $(MINILIBX):
-	@echo "$(ROSEBUD)Сompiling MiniLibX...$(RESET)"
-	@make -sC $(MINILIBX_PATH)
+	@echo "$(ROSEBUD)Compiling MiniLibX...$(RESET)"
+	@$(MAKE) -sC $(MINILIBX_DIR)
 	@echo "$(ROSEBUD)MiniLibX compiled!$(RESET)"
 
-src/%.o: src/%.c $(INCDIR)/fractol.h $(INCDIR)/defines.h
-	$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBFT_INCLUDE) -I$(MINILIBX_INCLUDE) -c $< -o $@
-
 clean:
-	$(MAKE) -C $(LIBFT_PATH) clean
-	$(MAKE) -C $(MINILIBX_PATH) clean
-	$(RM) $(OBJS)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(MINILIBX_DIR) clean
+	@$(RM) -r $(OBJDIR)
 
 fclean: clean
 	$(RM) $(NAME) $(LIBFT) $(MINILIBX)
 
 re: fclean all
 
+bonus: all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
