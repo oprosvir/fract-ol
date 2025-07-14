@@ -7,7 +7,8 @@ SRCDIR			= src/
 SRCS			= 	src/main.c \
 					src/parse.c \
 					src/render.c\
-					src/events.c \
+					src/events_mouse.c \
+					src/events_keyboard.c \
 					src/color.c \
 					src/utils.c \
 					src/error.c \

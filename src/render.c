@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:59:50 by oprosvir          #+#    #+#             */
-/*   Updated: 2025/07/14 01:38:35 by oprosvir         ###   ########.fr       */
+/*   Updated: 2025/07/14 03:11:23 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,28 @@ static int	is_julia(t_complex complex, t_fractol *app)
 		i++;
 	}
 	return (i);
+}
+
+static void	put_pixel(t_fractol *app, int x, int y, int color)
+{
+	int	offset;
+
+	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
+	{
+		offset = (x * app->bits_per_pixel / 8) + (y * app->line_size);
+		*(int *)(app->img_data + offset) = color;
+	}
+}
+
+static void	set_complex_values(t_fractol *app, int x, int y, t_complex *complex)
+{
+	double	scale_real;
+	double	scale_imag;
+
+	scale_real = (app->max_r - app->min_r) / WIN_WIDTH;
+	scale_imag = (app->max_i - app->min_i) / WIN_HEIGHT;
+	complex->real = app->min_r + x * scale_real;
+	complex->imag = app->max_i - y * scale_imag;
 }
 
 void	fractal_render(t_fractol *app)

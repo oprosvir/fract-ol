@@ -1,77 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   events_keyboard.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 18:58:10 by oprosvir          #+#    #+#             */
-/*   Updated: 2025/07/14 02:35:47 by oprosvir         ###   ########.fr       */
+/*   Updated: 2025/07/14 02:54:21 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	loop_hook(t_fractol *app)
-{
-	if (app->fractal_type == JULIA && app->keys.mouse_left)
-	{
-		julia_shift(app->keys.mouse_x, app->keys.mouse_y, app);
-		fractal_render(app);
-	}
-	return (0);
-}
-
-static void	zoom(t_fractol *app, double zoom_factor, int mouse_x, int mouse_y)
-{
-	double	mouse_re;
-	double	mouse_im;
-
-	mouse_re = app->min_r + (double)mouse_x / WIN_WIDTH * (app->max_r \
-		- app->min_r);
-	mouse_im = app->max_i - (double)mouse_y / WIN_HEIGHT * (app->max_i \
-		- app->min_i);
-	app->min_r = mouse_re + (app->min_r - mouse_re) * zoom_factor;
-	app->max_r = mouse_re + (app->max_r - mouse_re) * zoom_factor;
-	app->min_i = mouse_im + (app->min_i - mouse_im) * zoom_factor;
-	app->max_i = mouse_im + (app->max_i - mouse_im) * zoom_factor;
-	fractal_render(app);
-}
-
-int	mouse_press(int button, int x, int y, t_fractol *app)
-{
-	if (button == MOUSE_SCROLL_UP)
-		zoom(app, 0.9, x, y);
-	else if (button == MOUSE_SCROLL_DOWN)
-		zoom(app, 1.1, x, y);
-	else if (button == MOUSE_LEFT_BUTTON)
-	{
-		app->keys.mouse_left = 1;
-		app->keys.mouse_x = x;
-		app->keys.mouse_y = y;
-	}
-	return (0);
-}
-
-int	mouse_release(int button, int x, int y, t_fractol *app)
-{
-	if (button == MOUSE_LEFT_BUTTON)
-		app->keys.mouse_left = 0;
-	(void)x;
-	(void)y;
-	return (0);
-}
-
-int mouse_move(int x, int y, t_fractol *app)
-{
-	if (app->fractal_type == JULIA && app->keys.mouse_left)
-	{
-		app->keys.mouse_x = x;
-		app->keys.mouse_y = y;
-	}
-	return (0);
-}
-
 
 static void	move(t_fractol *app, char direction)
 {

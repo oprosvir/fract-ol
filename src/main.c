@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 00:07:14 by oprosvir          #+#    #+#             */
-/*   Updated: 2025/07/14 02:35:02 by oprosvir         ###   ########.fr       */
+/*   Updated: 2025/07/14 03:07:34 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,16 @@ static void	init_window(t_fractol *app, char *title)
 			&app->line_size, &app->endian);
 	if (!app->img_data)
 		allocation_error(app, "Error: Unable to get image data address");
+}
+
+static int	loop_hook(t_fractol *app)
+{
+	if (app->fractal_type == JULIA && app->keys.mouse_left)
+	{
+		julia_shift(app->keys.mouse_x, app->keys.mouse_y, app);
+		fractal_render(app);
+	}
+	return (0);
 }
 
 int	main(int argc, char *argv[])
