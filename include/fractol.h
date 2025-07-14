@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 23:49:52 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/12 21:03:45 by oprosvir         ###   ########.fr       */
+/*   Updated: 2025/07/14 02:30:46 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ bool	ft_isdouble(const char *str);
 double	ft_atof(const char *str);
 int		app_exit_success(t_fractol *app);
 int		handle_keypress(int keysym, t_fractol *app);
+int     loop_hook(t_fractol *app);
 int		get_color(t_fractol *app, int iteration);
-int		handle_mouse_events(int button, int x, int y, t_fractol *app);
+int     mouse_press(int button, int x, int y, t_fractol *app);
+int     mouse_release(int button, int x, int y, t_fractol *app);
+int     mouse_move(int x, int y, t_fractol *app);
 
 #endif

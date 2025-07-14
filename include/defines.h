@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:54:00 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/07/16 10:12:14 by oprosvir         ###   ########.fr       */
+/*   Updated: 2025/07/14 01:13:04 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ typedef enum e_fractal_type
 	JULIA
 }					t_fractal_type;
 
+typedef struct s_keys
+{
+	int	mouse_left;
+	int	mouse_x;
+	int	mouse_y;
+}					t_keys;
+
 typedef struct s_fractol
 {
 	void			*mlx_ptr;
@@ -61,6 +68,7 @@ typedef struct s_fractol
 	double			max_i;
 	double			julia_cx;
 	double			julia_cy;
+	t_keys			keys;
 }					t_fractol;
 
 #endif

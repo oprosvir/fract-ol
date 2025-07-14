@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:22:15 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/07/16 17:07:24 by oprosvir         ###   ########.fr       */
+/*   Updated: 2025/07/14 02:01:11 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	fractal_init(t_fractol *app, t_fractal_type type)
 	app->julia_cy = -0.231;
 	app->iterations = 100;
 	app->color_scheme = ELECTRIC;
+	app->keys.mouse_left = 0;
+	app->keys.mouse_x = 0;
+	app->keys.mouse_y = 0;
 }
 
 void	julia_shift(int x, int y, t_fractol *app)
@@ -32,9 +35,9 @@ void	julia_shift(int x, int y, t_fractol *app)
 		/ WIN_WIDTH;
 	app->julia_cy = app->max_i + (double)y * (app->min_i - app->max_i) \
 		/ WIN_HEIGHT;
+	// TODO: fix output format, use mlx_string_put
 	ft_printf("New Julia coordinates: cx = %f, cy = %f\n", app->julia_cx,
 		app->julia_cy);
-	fractal_render(app);
 }
 
 void	put_pixel(t_fractol *app, int x, int y, int color)

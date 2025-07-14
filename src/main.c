@@ -6,7 +6,7 @@
 /*   By: oprosvir <oprosvir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 00:07:14 by oprosvir          #+#    #+#             */
-/*   Updated: 2024/06/12 18:54:00 by oprosvir         ###   ########.fr       */
+/*   Updated: 2025/07/14 02:35:02 by oprosvir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,12 @@ int	main(int argc, char *argv[])
 	init_arg(&app, argc, argv);
 	init_window(&app, WIN_TITLE);
 	fractal_render(&app);
-	mlx_mouse_hook(app.win_ptr, handle_mouse_events, &app);
+	mlx_hook(app.win_ptr, 4, 1L << 2, mouse_press, &app);
+	mlx_hook(app.win_ptr, 5, 1L << 3, mouse_release, &app);
+	mlx_hook(app.win_ptr, 6, 1L << 6, mouse_move, &app);
 	mlx_key_hook(app.win_ptr, handle_keypress, &app);
 	mlx_hook(app.win_ptr, 17, 0, app_exit_success, &app);
+	mlx_loop_hook(app.mlx_ptr, loop_hook, &app);
 	mlx_loop(app.mlx_ptr);
 	return (EXIT_SUCCESS);
 }
